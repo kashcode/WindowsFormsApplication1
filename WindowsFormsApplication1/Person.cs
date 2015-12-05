@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace WindowsFormsApplication1
 {
+    /// <summary>
+    /// Persona
+    /// </summary>
     public class Person : INotifyPropertyChanged
     {
         private string _name = string.Empty;
