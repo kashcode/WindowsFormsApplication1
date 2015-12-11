@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1.Model
 {
-    public class FormModel : INotifyPropertyChanged
+    public class FormModel : INotifyPropertyChanged, IDisposable
     {
         private Person _person;
 
@@ -61,6 +61,11 @@ namespace WindowsFormsApplication1.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        public void Dispose()
+        {
+            this._person.PropertyChanged -= _person_PropertyChanged;
         }
     }
 }
