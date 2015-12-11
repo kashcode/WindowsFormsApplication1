@@ -14,6 +14,15 @@ namespace WindowsFormsApplication1.Model
         public FormModel()
         {
             _person = new Person();
+            _person.PropertyChanged += _person_PropertyChanged;
+        }
+
+        private void _person_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "Name")
+            {
+                CanSend = ((Person)sender).Name.Equals("Can");
+            }
         }
 
         public Person Person
