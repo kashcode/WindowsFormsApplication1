@@ -10,6 +10,10 @@ namespace WindowsService1
         /// </summary>
         static void Main(string[] args)
         {
+            log4net.Config.BasicConfigurator.Configure();
+            var logger = log4net.LogManager.GetLogger(typeof (Program));
+            logger.Info("Hello from log4net!");
+
             if (!Environment.UserInteractive)
             {
                 var servicesToRun = new ServiceBase[]
