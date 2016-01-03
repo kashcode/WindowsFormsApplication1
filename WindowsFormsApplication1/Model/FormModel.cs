@@ -7,13 +7,22 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1.Model
 {
-    public class FormModel : INotifyPropertyChanged
+    public class FormModel : INotifyPropertyChanged, IDisposable
     {
         private Person _person;
 
         public FormModel()
         {
             _person = new Person();
+            _person.PropertyChanged += _person_PropertyChanged;
+        }
+
+        private void _person_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "Name")
+            {
+                CanSend = ((Person)sender).Name.Equals("Can");
+            }
         }
 
         public Person Person
@@ -52,6 +61,11 @@ namespace WindowsFormsApplication1.Model
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        public void Dispose()
+        {
+            this._person.PropertyChanged -= _person_PropertyChanged;
         }
     }
 }

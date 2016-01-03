@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
         {
             _bindingSource = new BindingSource {DataSource = _model};
 
-            button2.DataBindings.Add(new Binding("Enabled", _bindingSource, "Person.Valid", false, DataSourceUpdateMode.OnPropertyChanged));
+            button2.DataBindings.Add(new Binding("Enabled", _bindingSource, "CanSend", false, DataSourceUpdateMode.OnPropertyChanged));
 
             NameTextBox.DataBindings.Add(new Binding("Text", _bindingSource, "Person.Name", false, DataSourceUpdateMode.OnPropertyChanged));
             LastnameTextBox.DataBindings.Add(new Binding("Text", _bindingSource, "Person.Lastname", false, DataSourceUpdateMode.OnPropertyChanged));
@@ -39,12 +39,14 @@ namespace WindowsFormsApplication1
             _i++;
             _n++;
 
-            _model.Person = new Person { Name = $"Binding {_i}", Lastname = $"Binding {_n}" };
+            _model.Person.Name = $"Binding {_i}";
+            _model.Person.Lastname = $"Binding {_n}";
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            _model.Person = new Person {Name = "Can", Lastname = "Can"};
+            _model.Person.Name = "Can";
+            _model.Person.Lastname = "Can";
         }
     }
 }
