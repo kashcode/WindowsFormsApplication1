@@ -9,6 +9,17 @@ namespace WindowsService1
         private System.Timers.Timer _timer;
         private bool _timerTaskSuccess;
 
+        private static log4net.ILog _logger;
+        private static log4net.ILog Logger
+        {
+            get
+            {
+                if (_logger != null) return _logger;
+                _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+                return _logger;
+            }
+        }
+
         public MyService()
         {
             InitializeComponent();
@@ -57,7 +68,7 @@ namespace WindowsService1
 
         public void WriteMessage(string message)
         {
-            
+            Logger.Debug(message);
         }
 
         protected override void OnStop()
